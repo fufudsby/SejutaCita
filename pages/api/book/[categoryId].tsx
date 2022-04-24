@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { StatusCodes, ReasonPhrases } from 'http-status-codes';
 import { getBooks } from 'utils/services/book';
 
-export default async function footer(req: NextApiRequest, res: NextApiResponse) {
+export default async function book(req: NextApiRequest, res: NextApiResponse) {
   if (req.method != 'GET') {
     res.status(StatusCodes.BAD_REQUEST).send({ message: ReasonPhrases.BAD_REQUEST });
     return;
