@@ -61,7 +61,7 @@ const DialogBooks: React.FunctionComponent<Props> = ({ book, open, onClose }: Pr
   const { bookmark } = React.useContext(BookmarkContext);
   const { downSm, downMd } = React.useContext(BreakpointsContext);
   const [ expanded, setExpanded ] = React.useState<string | false>(false);
-  const marked = React.useMemo(() => book ? _.includes(bookmark, book.id) : false, [bookmark]);
+  const marked = React.useMemo(() => book ? _.includes(bookmark, book.id) : false, [bookmark, open]);
   const handleChange = (panel: string) => (_event: React.SyntheticEvent, newExpanded: boolean) => {
     setExpanded(newExpanded ? panel : false);
   };
