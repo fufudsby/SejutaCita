@@ -7,15 +7,21 @@ import {
 import Link from 'next/link';
 import { Category as CategoryType } from 'pages/index';
 import _ from 'lodash';
+import { BreakpointsContext } from 'contexts/breakpoints';
 
 interface Props {
   categories: CategoryType[];
 };
 
 const Categories: React.FunctionComponent<Props> = ({ categories }: Props) => {
+  const { downSm } = React.useContext(BreakpointsContext);
   return (
-    <Box marginBottom={5} overflow="hidden">
-      <Typography variant="h6" fontWeight={700} marginBottom={2}>
+    <Box marginBottom={downSm ? 3 : 5} overflow="hidden">
+      <Typography
+        fontSize={downSm ? 18 : 20}
+        fontWeight={700}
+        marginBottom={2}
+      >
         {`Explore Categories`}
       </Typography>
       <Box display="flex" flexWrap="wrap" marginX={-0.5}>
