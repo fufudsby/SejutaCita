@@ -11,6 +11,7 @@ import theme from 'styles/theme';
 import _ from 'lodash';
 import createEmotionCache from 'styles/createEmotionCache';
 import Footer from 'components/footer';
+import Loading from 'components/loading';
 import { BreakpointsContext } from 'contexts/breakpoints';
 import { BookmarkContext } from 'contexts/bookmark';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -23,6 +24,7 @@ interface MyAppProps extends AppProps {
 
 export default function MyApp(props: MyAppProps) {
   const [ bookmark, setBookmark ] = React.useState([]);
+  const [ load, setLoad ] = React.useState(true);
   const downSm = useMediaQuery(theme.breakpoints.down('sm'));
   const downMd = useMediaQuery(theme.breakpoints.down('md'));
   const downLg = useMediaQuery(theme.breakpoints.down('lg'));
@@ -41,6 +43,13 @@ export default function MyApp(props: MyAppProps) {
     const bookmarkStorage = JSON.parse(localStorage.getItem('bookmark'));
     const bookmarkArray = bookmarkStorage ? bookmarkStorage : [];
     setBookmark(bookmarkArray);
+  }, []);
+  React.useEffect(() => {
+    const timer1 = setTimeout(() => setLoad(false), 3000);
+    return () => {
+      clearTimeout(timer1);
+      setLoad(false);
+    };
   }, []);
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   return (
@@ -65,6 +74,7 @@ export default function MyApp(props: MyAppProps) {
               onClickBookmark: handleBookmark,
             }}
           >
+            <Loading load={load} />
             <Box
               display="flex"
               flexDirection="column"
