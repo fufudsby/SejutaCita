@@ -36,7 +36,7 @@ const Loading: React.FunctionComponent<Props> = ({ load }) => {
           justifyContent="center"
           alignItems="center"
         >
-          <Box position="relative" width="100%" height={downMd ? 40 : 80}>
+          <Box position="relative" width="100%" height={downMd ? 50 : 80}>
             <Image
               src={`/images/logo.png`}
               layout="fill"

@@ -79,10 +79,20 @@ export default function MyApp(props: MyAppProps) {
               display="flex"
               flexDirection="column"
               minHeight="calc(100vh - 56px)"
+              sx={{
+                opacity: load ? 0 : 1,
+                height: load ? 0 : 'auto',
+              }}
             >
               <Component {...pageProps} />
             </Box>
-            <Footer />
+            <Box
+              sx={{
+                opacity: load ? 0 : 1,
+              }}            
+            >
+              <Footer />
+            </Box>
           </BookmarkContext.Provider>
         </BreakpointsContext.Provider>
       </ThemeProvider>
